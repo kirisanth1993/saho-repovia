@@ -1,6 +1,6 @@
 import React from 'react';
 import './LayoutStyle.scss';
-import Users from '../users/Users';
+import Users from '../users/userList/Users';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 export default function Layout(props){

@@ -1,7 +1,7 @@
-const urlBase = 'http://192.168.1.100:8383/api/v1';
+const urlBase = 'https://api.github.com';
 
 export const API_URL = {
     users: {
-        list: urlBase
+        list: urlBase + '/search/users?q={searchKey}&page={pageNo}&per_page={pageCount}'
     }
 };
