@@ -1,40 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../../../common/Input';
 import './UsersStyle.scss';
 import { http_Request } from '../../../../utils/HTTP_Request';
 import { API_URL } from '../../../../const/API_URLS';
-import SingleUser from '../userInfo/SingleUser';
+import SingleUser from '../singleUser/SingleUser';
+import { Link } from 'react-router-dom';
 
 export default function Users(props){
     const [searchedValue, setSearchedValue] = useState("");
     const [searchedResult, setSearchedResult] = useState([]);
     const [searchedResultCount, setSearchedResultCount] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isSearchAction, setIsSearchAction] = useState(false);
+
+    useEffect(() => {
+        !isSearchAction && fetchUsers(searchedValue);  
+    }, [currentPage]);
 
     const searchUsersAction = (event) => {
-        console.log(event.target.value);
         const searchingWord = event.target.value;
         setSearchedValue(event.target.value);
-
         // call backend after 3 char typed only 
         if(searchingWord.length < 3){
             setSearchedResult([]);
         }else if(searchingWord.length >= 3){
-            http_Request(
+            setCurrentPage(1);
+            setIsSearchAction(true);
+            fetchUsers(event.target.value);
+        }
+    };
+
+    const fetchUsers = (searchedWord) => {
+        http_Request(
             {
-                url: API_URL.users.list.replace("{searchKey}", searchingWord).replace("{pageNo}", 1).replace("{pageCount}", 10),
+                url: API_URL.users.list.replace("{searchKey}", searchedWord).replace("{pageNo}", currentPage).replace("{pageCount}", 8),
                 method: 'GET',
             }, 
             function successCallback(response){
                 console.log("response", response.data);
-                setSearchedResult(response.data.items);
+                setSearchedResult([...response.data.items]);
                 setSearchedResultCount(response.data.total_count);
+                setIsSearchAction(false);
             },
             function errorCallback(error){
                 console.log("error", error);
             });
-        }
 
-    };
+    }
+
+    const pageChangeAction = (type) => {
+        if(type === "reduce"){
+            setCurrentPage(currentPage - 1);
+        }else{
+            console.log("kooduthu");
+            setCurrentPage(currentPage + 1);
+        }
+    }
 
     return(
         <div className="users-container">
@@ -44,11 +65,11 @@ export default function Users(props){
                 </div>
                 <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 search-block">
                     <Input
-                        inputId = "search"
-                        inputName =  "search"
-                        inputPlaceholder ="Search Here"
-                        inputValue = { searchedValue }
-                        inputOnchangeAction = { searchUsersAction }
+                        inputid = "search"
+                        inputname =  "search"
+                        inputplaceholder ="Search For Users . ."
+                        inputvalue = { searchedValue }
+                        inputonchangeaction = { searchUsersAction }
                         className="form-control search-input"
                     />
                     <i className="fa fa-search" ></i>
@@ -60,23 +81,30 @@ export default function Users(props){
                     searchedResult.map((user) => {
                         return(
                             <div key={user.login} className="single-user col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <SingleUser
-                                    imageUrl={ user.avatar_url }
-                                    name={ user.login }
-                                />
+                                <Link to={"/userInfo?name=" + user.login}>
+                                    <SingleUser
+                                        imageUrl={ user.avatar_url }
+                                        name={ user.login }
+                                    />
+                                </Link>
                             </div>
                         );
                     }) 
                 }
-
-                
-                <h1>wewzcx</h1>,
-                <img src="https://cdn.dribbble.com/users/1883357/screenshots/6016190/search_no_result.png" alt="Avatar" className="card-img2"/>
-                <img src={require("../../../../assets/images/search_no_result.png")} alt="Avatar" className="card-img2"/>
-
-                
-
             </div>
+            <div>
+                {/* <img src="https://cdn.dribbble.com/users/1883357/screenshots/6016190/search_no_result.png" alt="Avatar" className="card-img2"/> */}
+            </div>
+
+            {
+                searchedResult.length > 0 && 
+                <div className="pagination-block">
+                    <i className="fa fa-angle-left" onClick={ () => ((currentPage !== 1)) && pageChangeAction("reduce") }></i>
+                    <span className="page-num">{ currentPage }</span>
+                    <i className="fa fa-angle-right" onClick={ () => ((Math.ceil(searchedResultCount/8) !== currentPage) && (Math.ceil(searchedResultCount/8) !== 0)) && pageChangeAction("increase") }></i>
+                </div>
+            }
+            
         </div>
     );
 

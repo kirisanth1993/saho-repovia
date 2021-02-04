@@ -1,0 +1,26 @@
+.user-info-container{
+    .fa-arrow-left{
+        font-size: 18px;
+        margin-right: 10px;
+        background-color: #efefef;
+        padding: 10px 20px;
+    }
+
+    .fa-arrow-left:hover{
+        background-color: #a19393;
+        color: #fff;
+    }
+
+    .back-label{
+        font-weight: 500;
+        color: #368144;
+    }
+}
+
+.single-sec{
+    background-color: #efefef;
+    padding: 5px 10px;
+    margin: 4px;
+    font-weight: 500;
+    color: #123456;
+}

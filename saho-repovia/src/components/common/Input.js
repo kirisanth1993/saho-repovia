@@ -1,11 +1,11 @@
 export default function Input(props){
     return(
         <input
-            id = { props.inputId }
-            name = { props.inputName }
-            placeholder = { props.inputPlaceholder }
-            value = { props.inputValue }
-            onChange = { props.inputOnchangeAction }
+            id = { props.inputid }
+            name = { props.inputname }
+            placeholder = { props.inputplaceholder }
+            value = { props.inputvalue }
+            onChange = { props.inputonchangeaction }
             {...props}
         />
     );

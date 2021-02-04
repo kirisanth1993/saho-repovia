@@ -22,6 +22,35 @@
 .single-user{
     padding: 5px 10px;
     margin: 15px 0px;
-    
+}
+
+.pagination-block{
+    display: flex;
+    float: right;
+
+    .fa-angle-left, .fa-angle-right, .page-num{
+        font-size: 20px;
+        font-weight: 600;
+        background-color: #efefef;
+        padding: 10px 15px;
+        margin: 2px;
+        cursor: pointer;
+    }
+
+    .fa-angle-left:hover, .fa-angle-right:hover{
+        background-color: #d4d4d4;
+    }
+
+    .page-num{
+        font-size: 18px;
+    }
+
+}
+
+.users-list-container{
+    a{
+        text-decoration: none !important;
+        color: #18524e !important;
+    }
 }
 
