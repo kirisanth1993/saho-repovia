@@ -106,7 +106,6 @@ export default function Users(props){
                     }
                 </div>
             }
-            <img src={ require("../../../../assets/images/Union.png") } alt="test"></img>
             {
                 (!isInitialStage && searchedResult.length === 0 && !isLoading) &&
                 <div className="no-result-img-block text-center">
