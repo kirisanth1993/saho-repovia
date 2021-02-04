@@ -49,7 +49,7 @@ export default function Users(props){
                     setSearchedResultCount(response.data.total_count);
                     setIsSearchAction(false);
                     setIsLoading(false);
-                }, 500);
+                }, 1000);
             },
             function errorCallback(error){
                 console.log("error", error);
@@ -63,7 +63,6 @@ export default function Users(props){
         if(type === "reduce"){
             setCurrentPage(currentPage - 1);
         }else{
-            console.log("kooduthu");
             setCurrentPage(currentPage + 1);
         }
     }
