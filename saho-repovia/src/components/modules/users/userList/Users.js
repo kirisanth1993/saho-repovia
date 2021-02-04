@@ -12,6 +12,8 @@ export default function Users(props){
     const [searchedResultCount, setSearchedResultCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [isSearchAction, setIsSearchAction] = useState(false);
+    const [isInitialStage, setIsInitialStage] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         !isSearchAction && fetchUsers(searchedValue);  
@@ -23,10 +25,14 @@ export default function Users(props){
         // call backend after 3 char typed only 
         if(searchingWord.length < 3){
             setSearchedResult([]);
+            setIsLoading(false);
         }else if(searchingWord.length >= 3){
+            setIsLoading(true);
+            setIsInitialStage(false);
             setCurrentPage(1);
             setIsSearchAction(true);
             fetchUsers(event.target.value);
+
         }
     };
 
@@ -38,17 +44,22 @@ export default function Users(props){
             }, 
             function successCallback(response){
                 console.log("response", response.data);
-                setSearchedResult([...response.data.items]);
-                setSearchedResultCount(response.data.total_count);
-                setIsSearchAction(false);
+                setTimeout(()=>{
+                    setSearchedResult([...response.data.items]);
+                    setSearchedResultCount(response.data.total_count);
+                    setIsSearchAction(false);
+                    setIsLoading(false);
+                }, 500);
             },
             function errorCallback(error){
                 console.log("error", error);
+                setSearchedResult([]);
+                setIsLoading(false);
             });
-
     }
 
     const pageChangeAction = (type) => {
+        setIsLoading(true);
         if(type === "reduce"){
             setCurrentPage(currentPage - 1);
         }else{
@@ -76,35 +87,56 @@ export default function Users(props){
                 </div>
             </div>
             <hr/>
-            <div className="users-list-container row">
-                { 
-                    searchedResult.map((user) => {
-                        return(
-                            <div key={user.login} className="single-user col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <Link to={"/userInfo?name=" + user.login}>
-                                    <SingleUser
-                                        imageUrl={ user.avatar_url }
-                                        name={ user.login }
-                                    />
-                                </Link>
-                            </div>
-                        );
-                    }) 
-                }
-            </div>
-            <div>
-                {/* <img src="https://cdn.dribbble.com/users/1883357/screenshots/6016190/search_no_result.png" alt="Avatar" className="card-img2"/> */}
-            </div>
+            { 
+                !isLoading && searchedResult.length >0 &&
+                <div className="users-list-container row">
+                    {
+                        searchedResult.map((user) => {
+                            return(
+                                <div key={user.login} className="single-user col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                    <Link to={"/userInfo?name=" + user.login}>
+                                        <SingleUser
+                                            imageUrl={ user.avatar_url }
+                                            name={ user.login }
+                                        />
+                                    </Link>
+                                </div>
+                            );
+                        }) 
+                    }
+                </div>
+            }
+            <img src={ require("../../../../assets/images/Union.png") } alt="test"></img>
+            {
+                (!isInitialStage && searchedResult.length === 0 && !isLoading) &&
+                <div className="no-result-img-block text-center">
+                    <img src="https://cdn.dribbble.com/users/1883357/screenshots/6016190/search_no_result.png" alt="No Result Found"/>
+                </div>
+            }
 
             {
-                searchedResult.length > 0 && 
+                isLoading && 
+                <div className="text-center spin-block">
+                    <img className="loading-spin" src="http://pa1.narvii.com/7491/d8b2fb62d9bc8d6c042da4fd6ad5be92a8d97825r1-200-200_00.gif"></img>
+                    <div className="searching-wrd">Searching For Users .  .</div>
+                </div>
+            }
+
+            {
+                isInitialStage &&
+                <div className="text-center welcome-note">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwZW-tdxCVOl-zgvr0245JDK65mc7mJGHdqw&usqp=CAU"></img>
+                </div>
+            }
+
+            {
+                searchedResult.length > 0 && !isLoading &&
                 <div className="pagination-block">
                     <i className="fa fa-angle-left" onClick={ () => ((currentPage !== 1)) && pageChangeAction("reduce") }></i>
                     <span className="page-num">{ currentPage }</span>
                     <i className="fa fa-angle-right" onClick={ () => ((Math.ceil(searchedResultCount/8) !== currentPage) && (Math.ceil(searchedResultCount/8) !== 0)) && pageChangeAction("increase") }></i>
                 </div>
             }
-            
         </div>
     );
 

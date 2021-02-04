@@ -80,42 +80,51 @@ export default function UserInfo(){
             <hr/>
 
             <div className="row">
-                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                    <div className="grp-section">
-                        <h3>Repositories</h3>
-                        {
-                            repos.map((singleRepo) => {
-                                return(
-                                    <div className="single-sec">{ singleRepo.name }</div>
-                                );
-                            })
-                        }
+                {
+                    repos.length > 0 &&
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
+                        <div className="grp-section">
+                            <h3>Repositories</h3>
+                            {
+                                repos.map((singleRepo) => {
+                                    return(
+                                        <div className="single-sec">{ singleRepo.name }</div>
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                    <div className="grp-section">
-                        <h3>Followers</h3>
-                        {
-                            followers.map((singleUser) => {
-                                return(
-                                    <div className="single-sec">{ singleUser.login }</div>
-                                );
-                            })
-                        }
+                }
+                {
+                    followers.length > 0 &&
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
+                        <div className="grp-section">
+                            <h3>Followers</h3>
+                            {
+                                followers.map((singleUser) => {
+                                    return(
+                                        <div className="single-sec">{ singleUser.login }</div>
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
-                    <div className="grp-section">
-                        <h3>Follows</h3>
-                        {
-                            userFollows.map((singleFollow) => {
-                                return(
-                                    <div className="single-sec">{ singleFollow.login }</div>
-                                );
-                            })
-                        }
+                }
+                {
+                    userFollows.length > 0 &&
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt-3">
+                        <div className="grp-section">
+                            <h3>Follows</h3>
+                            {
+                                userFollows.map((singleFollow) => {
+                                    return(
+                                        <div className="single-sec">{ singleFollow.login }</div>
+                                    );
+                                })
+                            }
+                        </div>
                     </div>
-                </div>
+                }
             </div>
             
         </div>
