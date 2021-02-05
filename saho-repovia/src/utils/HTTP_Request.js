@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const http_Request = (data, successCallback, errorCallback) => {
-    // console.log('Bearer ' + (sessionStorage.getItem('jwtToken') ? sessionStorage.getItem('jwtToken') : ""));
     axios({
         url: data.url,
         method: data.method,
@@ -12,7 +11,6 @@ export const http_Request = (data, successCallback, errorCallback) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             // 'Pragma': 'no-cache',
-            // 'Authorization': 'Bearer ' + 'c3a7ca0586ae3e0a37c3ed21e0ba6ca22df1d0d4',
             // 'Authorization': 'Bearer ' + (sessionStorage.getItem('jwtToken') ? sessionStorage.getItem('jwtToken') : ""),
             // 'Access-Control-Expose-Headers': "jwt_token"
         },
