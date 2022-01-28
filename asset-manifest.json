@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/saho-repovia/static/css/main.74e09ea0.chunk.css",
+    "main.js": "/saho-repovia/static/js/main.709cd38b.chunk.js",
+    "main.js.map": "/saho-repovia/static/js/main.709cd38b.chunk.js.map",
+    "runtime-main.js": "/saho-repovia/static/js/runtime-main.cd9c5c19.js",
+    "runtime-main.js.map": "/saho-repovia/static/js/runtime-main.cd9c5c19.js.map",
+    "static/js/2.2c34010f.chunk.js": "/saho-repovia/static/js/2.2c34010f.chunk.js",
+    "static/js/2.2c34010f.chunk.js.map": "/saho-repovia/static/js/2.2c34010f.chunk.js.map",
+    "static/js/3.7cc71c1f.chunk.js": "/saho-repovia/static/js/3.7cc71c1f.chunk.js",
+    "static/js/3.7cc71c1f.chunk.js.map": "/saho-repovia/static/js/3.7cc71c1f.chunk.js.map",
+    "index.html": "/saho-repovia/index.html",
+    "static/css/main.74e09ea0.chunk.css.map": "/saho-repovia/static/css/main.74e09ea0.chunk.css.map",
+    "static/js/2.2c34010f.chunk.js.LICENSE.txt": "/saho-repovia/static/js/2.2c34010f.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/saho-repovia/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cd9c5c19.js",
+    "static/js/2.2c34010f.chunk.js",
+    "static/css/main.74e09ea0.chunk.css",
+    "static/js/main.709cd38b.chunk.js"
+  ]
+}
