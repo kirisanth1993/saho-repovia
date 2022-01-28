@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/saho-repovia/static/css/main.74e09ea0.chunk.css",
-    "main.js": "/saho-repovia/static/js/main.709cd38b.chunk.js",
-    "main.js.map": "/saho-repovia/static/js/main.709cd38b.chunk.js.map",
+    "main.js": "/saho-repovia/static/js/main.29d19d76.chunk.js",
+    "main.js.map": "/saho-repovia/static/js/main.29d19d76.chunk.js.map",
     "runtime-main.js": "/saho-repovia/static/js/runtime-main.cd9c5c19.js",
     "runtime-main.js.map": "/saho-repovia/static/js/runtime-main.cd9c5c19.js.map",
     "static/js/2.2c34010f.chunk.js": "/saho-repovia/static/js/2.2c34010f.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.cd9c5c19.js",
     "static/js/2.2c34010f.chunk.js",
     "static/css/main.74e09ea0.chunk.css",
-    "static/js/main.709cd38b.chunk.js"
+    "static/js/main.29d19d76.chunk.js"
   ]
 }
