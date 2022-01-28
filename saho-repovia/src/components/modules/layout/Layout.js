@@ -9,8 +9,8 @@ export default function Layout(props){
         <div className="layout-container">
             <Router>
                 <Switch>
-                    <Route path="/" exact component={ Users }/>
-                    <Route path="/userInfo" exact component={ UserInfo }/>
+                    <Route path="/saho-repovia" exact component={ Users }/>
+                    <Route path="/saho-repovia/userInfo" exact component={ UserInfo }/>
                 </Switch>
             </Router>
         </div>

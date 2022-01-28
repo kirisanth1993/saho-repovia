@@ -93,7 +93,7 @@ export default function Users(props){
                         searchedResult.map((user) => {
                             return(
                                 <div key={user.login} className="single-user col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                    <Link to={"/userInfo?name=" + user.login}>
+                                    <Link to={"saho-repovia/userInfo?name=" + user.login}>
                                         <SingleUser
                                             imageUrl={ user.avatar_url }
                                             name={ user.login }

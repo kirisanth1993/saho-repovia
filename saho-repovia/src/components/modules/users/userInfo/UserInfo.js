@@ -69,7 +69,7 @@ export default function UserInfo(){
     return(
         <div className="user-info-container">
             <div>
-                <Link to="/">
+                <Link to="/saho-repovia">
                     <i className="fa fa-arrow-left"></i>
                 </Link>
                 <label className="back-label">Back To Users</label>
